@@ -26,7 +26,7 @@ function Messages({latitude, longitude}) {
     initConnection();
   }, []);
   useEffect(() => {
-    if (ws.current) {
+    if ((ws.current && longitude && latitude)) {
       const sendMsgData = {
         type: "SEND_COORDS",
         payload: {
