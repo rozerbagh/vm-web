@@ -38,6 +38,8 @@ function Messages({latitude, longitude}) {
           message: "message",
         },
       };
+      console.log(":::: send_coords ::::",JSON.stringify(sendMsgData));
+      debugger
       setInterval(() => {
         ws.current.send(JSON.stringify(sendMsgData));
       }, 1000);
