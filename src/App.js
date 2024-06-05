@@ -28,6 +28,7 @@ function App() {
     <Pricing />
   ) : (
     <>
+      <Pricing />
       {isAuth ? (
         <>
           <Messages />
