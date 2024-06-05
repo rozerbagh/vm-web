@@ -1,30 +1,25 @@
-import {useEffect, useState} from 'react'
-import axios from 'axios';
+import { useState } from "react";
+import {serverAxios} from "../utils/axiosInstance";
 
 function useAuth() {
-  const [userDetails, setUserDetails] = useState(null)
+  const [userDetails, setUserDetails] = useState(null);
   const handleLogin = (email, password) => {
-    axios
-      .post("http://174.138.123.193:3006/api/v1/user/login", {
-        email: "rozerbagh456@gmail.com",
-        password: "19Vicky93@",
+    serverAxios
+      .post("/user/login", {
+        email: email,
+        password: password,
       })
       .then(({ data }) => {
         console.log(data.response.data);
         localStorage.setItem("userDetails", JSON.stringify(data.response.data));
         setUserDetails(data.response.data);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  useEffect(() => {
-    const userd = JSON.parse(localStorage.getItem("userDetails"));
-    if (userd?.token) {
-      setUserDetails(userd)
-    }
-  }, []);
-  return { userDetails, handleLogin };
+  return { userDetails, setUserDetails, handleLogin };
 }
 
-export default useAuth
+export default useAuth;

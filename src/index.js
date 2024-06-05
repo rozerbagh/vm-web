@@ -5,12 +5,15 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AppProvider from "./contexts/AppContext";
+import MapProvider from "./contexts/MapContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AppProvider>
-      <App />
+      <MapProvider>
+        <App />
+      </MapProvider>
     </AppProvider>
   </React.StrictMode>
 );
